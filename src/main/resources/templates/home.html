@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	html {
+  scroll-behavior: smooth;
+}
+
+li {
+  display: inline-block;
+  
+  padding: 15px;
+  
+  
+
+}
+ul{
+    float: right;
+    text-align: right;
+    padding: 0px;
+    margin: 0px;
+    position: sticky;
+    top: 0;  
+    width: 90%;
+    
+
+    
+   
+    
+    
+
+}
+li a{
+	
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    text-align: center;
+  padding: 14px 16px;
+  text-align: center;
+    
+    
+}
+li a:hover {
+ background-color: rgb(192, 192, 192);
+}
+h1{
+    font-style: italic;
+    
+}
+div.fixed {
+  position: fixed;
+  top: 160px;;
+  right: 0px;
+  width: 300px;
+  
+  
+}
+h2{
+	font-size: medium;
+	font-style: italic;
+}
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: rgb(0, 0, 0);
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgb(255, 255, 255);
+  z-index: 1;
+}
+.dropdown-content a {
+  float: none;
+  color: rgb(0, 0, 0);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.search-bar {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(77, 78, 91);
+  padding: 20px;	
+  border-radius: 5px;
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.search-bar input,
+.search-bar button {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-bar button {
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: #2980b9;
+}
+.overlay-text {
+  position: absolute;
+  top: 97px;
+  left: 70px;
+  font-size: 36px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  
+  font-family: italic;
+}
+
+</style>
+</head>
+<body>
+
+
+
+<ul>
+  <li><a class="active" href="#home">HOME</a></li>
+  <li class="dropdown">
+    <a href="#" class="dropbtn">LOGIN</a>
+    <div class="dropdown-content">
+      <a href="/page">USER</a>
+      <a href="/admin">ADMIN</a>
+    </div>
+  </li>
+  
+<li><a class="active" href="/booking">BOOKING</a></li>
+  <li><a href="#about">ABOUT</a></li>
+  <li><a href="#contactus">CONTACT US</a></li>
+  <li><a href="/feedback/default.asp" target="_blank">FEEDBACK</a></li>
+  
+ 
+</ul>
+
+<img src="mg1.jpg" style="width: 1250px;height: 600px;">
+
+ <div class="overlay-text">
+	 <h1>Book Rooms Anytime, Anywhere – Hassle-Free!</h1>
+
+</div>
+<div class="search-bar">
+<form action="/search">
+        <input type="text" name="location" placeholder="location">
+        <input type="number" name="capacity" placeholder="people">
+       
+        <input type="submit" value="search"><br><br>
+        </form>
+</div>
+        
+        
+        
+<div id="booking" class="section">
+<h1 style="text-align:center;">Available Rooms</h1>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+    <div th:each="room : ${rooms}" style="border: 1px solid #ccc; border-radius: 10px; width: 300px; margin: 15px; padding: 15px; box-shadow: 2px 2px 10px #aaa;">
+        <img th:src="@{${room.imageUrl}}" alt="Room Image" style="width:100%; height:200px; object-fit: cover; border-radius: 10px;">
+        <h2 th:text="${room.name}" style="margin-top: 10px;"></h2>
+        <p th:text="'Capacity: ' + ${room.capacity}"></p>
+        <p th:text="'Price: ₹' + ${room.price} + '/night'"></p>
+       
+        <a th:href="@{/bookings/{id}(id=${room.id})}" style="display:inline-block; padding:10px 15px; background-color:rgb(173, 173, 173); color:white; text-decoration:none; border-radius:5px;">Book Now</a>
+    </div>
+</div>
+</div>
+ 
+<div id="about" class="section">
+    <h1>About Us</h1>
+    <p>Welcome to StayEase—your one-stop solution for smart, seamless room booking! At StayEase, we believe in offering our customers an effortless, hassle-free experience when booking accommodations, whether for business, leisure, or anything in between.
+    </p>
+<h2>Our Vision</h2>
+We aim to revolutionize the hospitality industry by providing a smart, user-friendly platform that allows you to book your stay with just a few clicks, all while ensuring comfort, flexibility, and security.
+    </p>
+<h2> We Offer</h2>
+<p>
+Real-time Room Availability: StayEase lets you view available rooms in real-time, so you can make informed decisions based on your preferences.
+
+Customizable Search Filters: Find exactly what you're looking for by applying various search filters like location, price, amenities, and more.
+
+Seamless Booking: Our system allows you to book rooms directly without the need for lengthy registration or waiting times.
+
+Secure Payment Options: We ensure secure payment processing through trusted platforms, giving you peace of mind.
+
+24/7 Customer Support: Have a question? Our customer support team is here to assist you anytime, anywhere.
+    </p>
+<h2>StayEase?</h2> 
+<p>We understand that booking a room should be easy and stress-free. That’s why we’ve created an intuitive platform that simplifies the process, ensuring you have more time to enjoy your travels and less time worrying about logistics.
+
+.</p>
+  </div>    
+
+	<div id="contactus" class="section">
+  <h1>Contact Us</h1>
+  <p>📞 Phone: +91-9021000001</p>
+  <p>📧 Email: support@stayease.com</p> 
+ 
+</div>
+
+</body>
+</html>
+
+

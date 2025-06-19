@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	
+       <form action="/update">
+		     <input type="number" name="id" placeholder="id" th:value="${room.id}">
+        <input type="text" name="name" placeholder="name" th:value="${room.name}">
+        <input type="number" name="capacity" placeholder="capacity" th:value="${room.capacity}">
+        <input type="text" name="location" placeholder="location" th:value="${room.location}">
+        <input type="number" name="price" placeholder="price" th:value="${room.price}">
+        <input type="text" name="imageUrl" placeholder="imageUrl" th:value="${room.imageUrl}">
+        <input type="submit">
+    </form>   
+</body>
+</html>

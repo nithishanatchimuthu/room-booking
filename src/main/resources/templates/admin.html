@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Room Admin Panel</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    input, button { margin: 5px; padding: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <h2>Room Management</h2>
+ <form action="/rooms" method="post">
+	     <input type="number" name="id" placeholder="Id"  />
+
+    <input type="text" name="name" placeholder="Name"  />
+    <input type="number" name="capacity" placeholder="Capacity"  />
+    <input type="text" name="location" placeholder="Location"  />
+    <input type="number" step="0.01" name="price" placeholder="Price"  />
+    <input type="text" name="imageUrl" placeholder="ImageURL"  />
+ 
+    <button type="submit">Add Room</button>
+</form>
+
+  
+  
+
+  <table>
+    
+      <tr><th>ID</th><th>Name</th><th>Capacity</th><th>Location</th><th>Price</th><th>imageUrl</th><th>Booked</th><th>Delete</th><th>Update</th><th>checkedout</th></tr> 
+      <tr th:each="room : ${rooms}">
+		          <td th:text="${room.id}"></td>
+
+        <td th:text="${room.name}"></td>
+        <td th:text="${room.capacity}"></td>
+        <td th:text="${room.location}"></td>
+        <td th:text="${room.price}"></td>
+        <td th:text="${room.imageUrl}"></td>
+        <td th:text="${room.booked}"></td>
+         <td > <a th:href="@{/delete/{id}(id=${room.id})}">Delete</a>
+         <td><a th:href="@{/updatepage/{id}(id=${room.id})}">edit</a>
+         <td><a th:href="@{/checkedout/{id}(id=${room.id})}">checkedout</a>
+
+
+   
+    
+  </table>
+  <h2>All Check-ins / Bookings</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Room</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Card Name</th>
+            <th>Card Number</th>
+            <th>Exp Month</th>
+            <th>Exp Year</th>
+            <th>CVV</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="checkin : ${checkins}">
+            <td th:text="${checkin.name}">Name</td>
+            <td th:text="${checkin.email}">Email</td>
+            <td th:text="${checkin.roomId}">RoomID</td>
+            <td th:text="${checkin.address}">Address</td>
+            <td th:text="${checkin.city}">City</td>
+            <td th:text="${checkin.state}">State</td>
+            <td th:text="${checkin.zip}">Zip</td>
+            <td th:text="${checkin.cardname}">Card Name</td>
+            <td th:text="${checkin.cardnumber}">Card Number</td>
+            <td th:text="${checkin.expmonth}">Exp Month</td>
+            <td th:text="${checkin.expyear}">Exp Year</td>
+            <td th:text="${checkin.cvv}">CVV</td>
+            
+        </tr>
+    </tbody>
+</table>
+
+
+  
+</body>
+</html>
